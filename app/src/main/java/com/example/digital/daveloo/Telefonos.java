@@ -1,7 +1,13 @@
 package com.example.digital.daveloo;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -64,6 +70,9 @@ public class Telefonos extends Fragment {
                                     long id) {
                 TextView tv = (TextView) view.findViewById(R.id.contacto);
                 String text = tv.getText().toString();
+                TextView ptv = (TextView)view.findViewById(R.id.numero);
+                final String phoneNumber = ptv.getText().toString();
+
                 String txtConfirmacion = String.format("¿Seguro que deseas llamar a %s?", text);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage(txtConfirmacion)
@@ -71,7 +80,7 @@ public class Telefonos extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // do the call
-
+                                callPhoneNumber(phoneNumber);
                             }
                         }).setNegativeButton("Cancelar", null);
                 AlertDialog alert = builder.create();
@@ -81,5 +90,35 @@ public class Telefonos extends Fragment {
 
 
         return rootView;
+    }
+
+    public void callPhoneNumber(String phoneNumber){
+        try
+        {
+            if(Build.VERSION.SDK_INT > 22)
+            {
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+
+                    requestPermissions( new String[]{Manifest.permission.CALL_PHONE}, 101);
+
+                    return;
+                }
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phoneNumber));
+                startActivity(callIntent);
+
+            }
+            else {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phoneNumber));
+                startActivity(callIntent);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }
