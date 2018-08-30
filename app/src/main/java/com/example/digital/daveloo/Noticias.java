@@ -28,19 +28,12 @@ public class Noticias extends Fragment {
         String[] evento3 = {"Sistema de bicicleta pública", "3" };
         String[] evento4 = {"Subasta pública de siete módulos comerciales", "3" };
         String[] evento5 = {"Contribuyentes no habidos", "3" };
-        String[] evento6 = {"Asignación de ubicaciones - propaganda electoral para elecciones municipales", "3" };
-        String[] evento7 = {"Fraccionamiento virtual - web", "3" };
-        String[] evento8 = {"Actualización de datos del vecino", "3" };
-
 
         lista.add(evento1);
         lista.add(evento2);
         lista.add(evento3);
         lista.add(evento4);
         lista.add(evento5);
-        lista.add(evento6);
-        lista.add(evento7);
-        lista.add(evento8);
 
         ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
 
