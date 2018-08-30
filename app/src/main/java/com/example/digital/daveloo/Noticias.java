@@ -18,21 +18,20 @@ public class Noticias extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_noticias, container, false);
 
-        String[] from = new String[] { "time", "name", "desc" };
-        int[] to = new int[] { R.id.hora, R.id.nombre, R.id.desc1 };
+        String[] from = new String[] { "titulo" };
+        int[] to = new int[] { R.id.titulo };
 
         ArrayList<String[]> lista = new ArrayList<String[]>();
 
-        String[] evento1 = { "11:30", "Reunión de coordinación", "Lugar: Auditorio", "1" };
-        String[] evento2 = { "12:00", "Almuerzo", "Lugar: Comedor central", "2" };
-        String[] evento3 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento4 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento5 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento6 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento7 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento8 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento9 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
-        String[] evento10 = { "14:00", "Tiro al dardo", "Lugar: Oficina", "3" };
+        String[] evento1 = {"Transferencia de gestión administrativa", "1" };
+        String[] evento2 = {"A comer sano en Miraflores", "2" };
+        String[] evento3 = {"Sistema de bicicleta pública", "3" };
+        String[] evento4 = {"Subasta pública de siete módulos comerciales", "3" };
+        String[] evento5 = {"Contribuyentes no habidos", "3" };
+        String[] evento6 = {"Asignación de ubicaciones - propaganda electoral para elecciones municipales", "3" };
+        String[] evento7 = {"Fraccionamiento virtual - web", "3" };
+        String[] evento8 = {"Actualización de datos del vecino", "3" };
+
 
         lista.add(evento1);
         lista.add(evento2);
@@ -42,18 +41,14 @@ public class Noticias extends Fragment {
         lista.add(evento6);
         lista.add(evento7);
         lista.add(evento8);
-        lista.add(evento9);
-        lista.add(evento10);
 
         ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
 
         for (String[] evento : lista) {
             HashMap<String, String> datosEvento = new HashMap<String, String>();
 
-            datosEvento.put("time", evento[0]);
-            datosEvento.put("name", evento[1]);
-            datosEvento.put("desc", evento[2]);
-            datosEvento.put("id", evento[3]);
+            datosEvento.put("titulo", evento[0]);
+            datosEvento.put("id", evento[1]);
 
             eventos.add(datosEvento);
         }
@@ -66,5 +61,10 @@ public class Noticias extends Fragment {
         // Inflate the layout for this fragment
         return rootView;
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }

@@ -22,10 +22,11 @@
                 android:id="@+id/lista1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:layout_marginTop="?attr/actionBarSize"
                 android:cacheColorHint="#00000000"
-                android:padding="5dp"></ListView>
+                android:padding="7dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10.0sp"></ListView>
         </LinearLayout>
     </ScrollView>
 
