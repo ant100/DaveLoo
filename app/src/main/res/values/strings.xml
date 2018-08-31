@@ -9,6 +9,12 @@
     <string name="inicio">Inicio</string>
     <string name="redes">Redes Sociales</string>
     <string name="lugares">Lugares</string>
+    <string name="tipo">Tipo</string>
+
+    <string-array name="tipo_contacto">
+        <item>Denuncia</item>
+        <item>Consulta</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
