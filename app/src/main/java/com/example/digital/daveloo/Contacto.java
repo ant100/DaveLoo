@@ -1,47 +1,59 @@
 package com.example.digital.daveloo;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
 
-public class Contacto extends Fragment {
-    private Spinner spinner;
-    private Button btnEnviar;
-    private Button camara;
+public class Contacto extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_contacto, container, false);
 
-
-        return inflater.inflate(R.layout.fragment_contacto, container, false);
-    }
-
-    public void addListenerOnButton() {
-
-        spinner = getView().findViewById(R.id.spinner);
-        camara = getView().findViewById(R.id.camara);
-        btnEnviar = getView().findViewById(R.id.btnEnviar);
-
-        btnEnviar.setOnClickListener(new View.OnClickListener() {
+        // onclick event for the camera button
+        Button btnCamara = rootView.findViewById(R.id.camara);
+        btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                callCamera();
             }
         });
 
-        camara.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        return rootView;
+    }
+
+    public void callCamera(){
+        try
+        {
+            if(Build.VERSION.SDK_INT > 22)
+            {
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions( new String[]{Manifest.permission.CAMERA}, 101);
+                    return;
+                }
+
+                Intent abrirCamara = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(abrirCamara);
+
+            }
+            else {
                 Intent abrirCamara = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivity(abrirCamara);
             }
-        });
-
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
+
 }
