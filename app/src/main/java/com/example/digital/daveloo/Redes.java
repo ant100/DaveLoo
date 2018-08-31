@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -50,5 +52,36 @@ public class Redes extends AppCompatActivity {
                 startActivity(sendIntent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.inicio) {
+
+            Intent intent = new Intent(this,MainActivity.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.redes) {
+            Intent intent = new Intent(this,Redes.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.lugares) {
+            Intent intent = new Intent(this,Redes.class);
+            this.startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
