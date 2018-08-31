@@ -12,18 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
+=======
+        <activity android:name=".LoginActivity">
+>>>>>>> 435e72990ef113fba91eabcde20e1cbbc72e4da1
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".DetalleNoticia"
             android:theme="@style/AppTheme.CustomTheme"></activity>
         <activity android:name=".Redes"></activity>
+=======
+        <activity android:name=".MainActivity">
+
+        </activity>
+>>>>>>> 435e72990ef113fba91eabcde20e1cbbc72e4da1
     </application>
 
 </manifest>
