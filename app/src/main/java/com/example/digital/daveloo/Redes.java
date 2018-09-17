@@ -77,7 +77,7 @@ public class Redes extends AppCompatActivity {
         }
 
         if (id == R.id.lugares) {
-            Intent intent = new Intent(this,Redes.class);
+            Intent intent = new Intent(this,Lugares.class);
             this.startActivity(intent);
             return true;
         }
