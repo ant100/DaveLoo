@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "218735448389",
+    "firebase_url": "https://coherent-code-216500.firebaseio.com",
+    "project_id": "coherent-code-216500",
+    "storage_bucket": "coherent-code-216500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218735448389:android:85bd3ebf41f62417",
+        "android_client_info": {
+          "package_name": "com.example.digital.daveloo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218735448389-r774ergjbuqbhu2bd6q0g8c2t7kuifj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.digital.daveloo",
+            "certificate_hash": "88e3c33b462e8c09a80b5535bd36c470368868ee"
+          }
+        },
+        {
+          "client_id": "218735448389-pt6l8nvgrjs3cmthqhm184t8vdgpsgp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIG7k3BDFwa0AQFjol-cq8Ybdokt8cDoY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218735448389-pt6l8nvgrjs3cmthqhm184t8vdgpsgp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218735448389:android:828a5fe6735e90f8",
+        "android_client_info": {
+          "package_name": "com.example.operador.proyectopush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218735448389-q374fepo21qpio2e5ksk4demksqbbaqo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.operador.proyectopush",
+            "certificate_hash": "942bc8bb963a5f13c63caeb11eac717bb3e4c1d1"
+          }
+        },
+        {
+          "client_id": "218735448389-pt6l8nvgrjs3cmthqhm184t8vdgpsgp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIG7k3BDFwa0AQFjol-cq8Ybdokt8cDoY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218735448389-pt6l8nvgrjs3cmthqhm184t8vdgpsgp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
