@@ -40,7 +40,7 @@ public class Noticias extends Fragment {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://daveloo.000webhostapp.com/notas")
+                .url("https://daveloo.000webhostapp.com/notas?format=json")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
