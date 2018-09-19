@@ -4,30 +4,20 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.DisplayMetrics;
 
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -41,13 +31,7 @@ public class DetalleNoticia extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //set content view AFTER ABOVE sequence (to avoid crash)
         this.setContentView(R.layout.activity_detalle_noticia);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -87,15 +71,11 @@ public class DetalleNoticia extends Activity {
 
                     Gson gson = new Gson();
                     Type stringStringMap = new TypeToken<Object>() { }.getType();
-                    String jsonStr = "{\"a\": \"A\"}";
 
                     final Map<String, Object> retorno = gson.fromJson(cadenaJson, stringStringMap);
                     final TextView titular = (TextView) findViewById(R.id.titular);
                     final TextView contenido = (TextView) findViewById(R.id.contenido);
                     final ImageView imagen = (ImageView) findViewById(R.id.imagen);
-
-
-                    //final ListView lstAvisos = (ListView)findViewById(R.id.listaAvisos);
 
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -103,12 +83,6 @@ public class DetalleNoticia extends Activity {
                             contenido.setText(Html.fromHtml(retorno.get("noticia_contenido").toString()));
                             new DownloadImageTask(imagen)
                                     .execute("https://daveloo.000webhostapp.com/imagen/portrait/"+retorno.get("noticia_imagen").toString());
-
-                           /* ArrayAdapter<String> adaptador = new ArrayAdapter<String>(
-                                    AvisoBuscarActivity.this,
-                                    android.R.layout.simple_list_item_1,
-                                    matriz);
-                            lstAvisos.setAdapter(adaptador);*/
 
                         }
                     });
