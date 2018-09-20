@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,19 +94,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void grabar(View view) {
 
-        TextView tipo = (TextView) findViewById(R.id.tipo);
+        Spinner tipo = (Spinner) findViewById(R.id.spinner);
         EditText texto = (EditText) findViewById(R.id.texto);
 
         FormularioDAO dao = new FormularioDAO(getBaseContext());
         try {
             //dao.eliminarTodos();
-            dao.insertar(tipo.getText().toString(), texto.getText().toString(), "imagen", 1);
+            dao.insertar(tipo.getSelectedItem().toString(), texto.getText().toString(), "imagen", 1);
 
             Toast toast= Toast.makeText(getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
 
-            tipo.setText("");
+            tipo.setSelection(0);
             texto.setText("");
         } catch (DAOException e) {
             Log.i("FormularioNuevoActi", "====> " + e.getMessage());
