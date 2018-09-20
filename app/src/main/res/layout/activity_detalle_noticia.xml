@@ -34,7 +34,7 @@
                 android:adjustViewBounds="true"/>
             <TextView
                 android:id="@+id/contenido"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"/>

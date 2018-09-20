@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="112dp"
-            android:layout_marginTop="59dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:paddingTop="5dp"
             android:text="Tipo:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +30,7 @@
             android:layout_height="33dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="?attr/actionBarSize"
             android:entries="@array/tipo_contacto"
             android:prompt="@string/tipo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +54,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.886" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="270dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="64dp"
+            android:text="Ingrese aquí su texto:"
+            app:layout_constraintBottom_toTopOf="@+id/editText3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/editText3"
             android:layout_width="270dp"
@@ -61,15 +75,16 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/custom_button"
             android:ems="10"
+            android:gravity="top|left"
             android:inputType="textMultiLine"
             android:selectAllOnFocus="true"
-            android:text="Ingrese aquí su texto"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.498" />
+            app:layout_constraintVertical_bias="0.389" />
 
         <Button
             android:id="@+id/camara"
