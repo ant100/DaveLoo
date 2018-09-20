@@ -7,10 +7,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class Contacto extends Fragment{
     @Override
@@ -30,6 +34,7 @@ public class Contacto extends Fragment{
 
         return rootView;
     }
+
 
     public void callCamera(){
         try
