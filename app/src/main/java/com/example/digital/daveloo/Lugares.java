@@ -35,6 +35,7 @@ import okhttp3.Response;
 
 public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
 
+    /*Credit where credit is due. Thnx to nrk*/
     SupportMapFragment mapFragment;
     GoogleMap gmap;
     JSONArray jarraysote;
@@ -69,13 +70,14 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
                     Log.i("====>", cadenaJson);
 
                     Gson gson = new Gson();
-                    Type stringStringMap = new TypeToken<ArrayList<Map<String, Object>>>() { }.getType();
+                    Type stringStringMap = new TypeToken<ArrayList<Map<String, Object>>>() {
+                    }.getType();
 
                     final ArrayList<Map<String, Object>> retorno = gson.fromJson(cadenaJson, stringStringMap);
 
                     Log.i("====>", retorno.toString());
 
-                    try{
+                    try {
                         jarraysote = new JSONArray(retorno.toArray());
                         runOnUiThread(new Runnable() {
                             @Override
@@ -84,8 +86,7 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
                             }
                         });
 
-                    }
-                    catch(JSONException e){
+                    } catch (JSONException e) {
                         Log.i("====>", "upsidupsi");
                         e.printStackTrace();
                     }
@@ -95,18 +96,20 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
-    public void nombre(){
+    public void nombre() {
         try {
             Log.i("====>", String.valueOf(jarraysote.get(0)));
-        for (int i = 0; i < jarraysote.length(); i++) {
-            JSONObject jobinterview = jarraysote.getJSONObject(i);
-            Log.i("====>", jobinterview.getString("mapa_nombre"));
-            gmap.addMarker(new MarkerOptions()
-                    .position(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")))
-                    .title(jobinterview.getString("mapa_nombre")));
-        }
-        }
-        catch(JSONException e){
+            for (int i = 0; i < jarraysote.length(); i++) {
+                JSONObject jobinterview = jarraysote.getJSONObject(i);
+                Log.i("====>", jobinterview.getString("mapa_nombre"));
+                gmap.addMarker(new MarkerOptions()
+                        .position(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")))
+                        .title(jobinterview.getString("mapa_nombre")));
+                if (i == 0) {
+                    gmap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")), 15));
+                }
+            }
+        } catch (JSONException e) {
             Log.i("====>", "upsidupsi2");
             e.printStackTrace();
         }
@@ -135,19 +138,19 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
         int id = item.getItemId();
         if (id == R.id.inicio) {
 
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             this.startActivity(intent);
             return true;
         }
 
         if (id == R.id.redes) {
-            Intent intent = new Intent(this,Redes.class);
+            Intent intent = new Intent(this, Redes.class);
             this.startActivity(intent);
             return true;
         }
 
         if (id == R.id.lugares) {
-            Intent intent = new Intent(this,Lugares.class);
+            Intent intent = new Intent(this, Lugares.class);
             this.startActivity(intent);
             return true;
         }
