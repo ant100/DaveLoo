@@ -1,8 +1,12 @@
 package com.example.digital.daveloo;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -21,10 +25,23 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // guardar el id
+        Bundle b = getIntent().getExtras();
+        int value = 0;
+        if (b != null){
+            value = b.getInt("usuario_id");
+        }
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("usuario_id", value);
+        editor.apply();
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#c281e2")));
@@ -96,11 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner tipo = (Spinner) findViewById(R.id.spinner);
         EditText texto = (EditText) findViewById(R.id.texto);
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        int usuario_id = sharedPreferences.getInt("usuario_id", -1);
 
         FormularioDAO dao = new FormularioDAO(getBaseContext());
         try {
             //dao.eliminarTodos();
-            dao.insertar(tipo.getSelectedItem().toString(), texto.getText().toString(), "imagen", 1);
+            dao.insertar(tipo.getSelectedItem().toString(), texto.getText().toString(), "imagen", usuario_id);
 
             Toast toast= Toast.makeText(getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);

@@ -26,13 +26,15 @@
         <meta-data android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB7OGvtYWNlSDE-BhRG2LkZMlOrp9qbTRo" />
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan" >
+
         </activity>
         <activity
             android:name=".DetalleNoticia"
