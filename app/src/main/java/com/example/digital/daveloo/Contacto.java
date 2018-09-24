@@ -12,14 +12,18 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.Button;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -29,7 +33,8 @@ import static android.app.Activity.RESULT_OK;
 public class Contacto extends Fragment{
 
     private ImageView imageView;
-    private Uri file;
+    File fotoFile = null;
+    Uri fotoUri;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class Contacto extends Fragment{
 
         // onclick event for the camera button
         imageView = rootView.findViewById(R.id.imageView2);
+        rotar(90);
         Button btnCamara = rootView.findViewById(R.id.camara);
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,33 +55,36 @@ public class Contacto extends Fragment{
         return rootView;
     }
 
+    private void rotar(float degree)
+    {
+        final RotateAnimation rotateAnim = new RotateAnimation(0.0f, degree,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+
+        rotateAnim.setDuration(0);
+        rotateAnim.setFillAfter(true);
+        imageView.startAnimation(rotateAnim);
+    }
 
     public void callCamera(){
-        try
-        {
-            if(Build.VERSION.SDK_INT > 22)
-            {
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions( new String[]{Manifest.permission.CAMERA}, 101);
-                    return;
+
+        CameraUtil util = new CameraUtil();
+        Intent tomarfoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (tomarfoto.resolveActivity(getActivity().getPackageManager()) != null){
+                try
+                {
+                    fotoFile = util.createImageFile(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+                }
+                catch(IOException e)
+                {
+                    Log.e("upsidupsi",e.getMessage());
                 }
 
-                Intent abrirCamara = new Intent("android.media.action.IMAGE_CAPTURE");
-                //file = Uri.fromFile(getOutputMediaFile());
-                //abrirCamara.putExtra(MediaStore.EXTRA_OUTPUT, file);
-                startActivityForResult(abrirCamara,786);
-                Log.i("cam", "what?");
+                fotoUri = FileProvider.getUriForFile(getContext(),"com.example.android.fileprovider", fotoFile);
+                tomarfoto.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+                startActivityForResult(tomarfoto, 786);
+        }
 
-            }
-            else {
-                Intent abrirCamara = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivity(abrirCamara);
-            }
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
 
 
     }
@@ -84,11 +93,11 @@ public class Contacto extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 786) {
             if (resultCode == RESULT_OK) {
-                imageView.setImageURI(file);
+                imageView.setImageURI(fotoUri);
             }
         }
     }
-
+/*
     public static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "Fotos");
@@ -103,5 +112,5 @@ public class Contacto extends Fragment{
         return new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_"+ timeStamp + ".jpg");
     }
-
+*/
 }
