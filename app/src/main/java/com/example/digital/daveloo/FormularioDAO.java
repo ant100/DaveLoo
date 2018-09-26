@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FormularioDAO {
 
     private DbHelper _dbHelper;
@@ -14,7 +18,7 @@ public class FormularioDAO {
         _dbHelper = new DbHelper(c);
     }
 
-    public void insertar(String tipo, String texto, String imagen, Integer usuario_id) throws DAOException {
+    /*public void insertar(String tipo, String texto, String imagen, Integer usuario_id) throws DAOException {
         Log.i("FormularioDAO", "insertar()");
         SQLiteDatabase db = _dbHelper.getWritableDatabase();
         try {
@@ -33,9 +37,9 @@ public class FormularioDAO {
                 db.close();
             }
         }
-    }
+    }*/
 
-    public Formulario obtener() throws DAOException {
+    /*public Formulario obtener() throws DAOException {
         Log.i("FormularioDAO", "obtener()");
         SQLiteDatabase db = _dbHelper.getReadableDatabase();
         Formulario modelo = new Formulario();
@@ -67,7 +71,7 @@ public class FormularioDAO {
             }
         }
         return modelo;
-    }
+    }*/
 
 }
 

@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void grabar(View view) {
+    /*public void grabar(View view) {
 
         Spinner tipo = (Spinner) findViewById(R.id.spinner);
         EditText texto = (EditText) findViewById(R.id.texto);
@@ -131,5 +131,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (DAOException e) {
             Log.i("FormularioNuevoActi", "====> " + e.getMessage());
         }
-    }
+    }*/
 }
