@@ -20,6 +20,7 @@ import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Base64OutputStream;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
@@ -186,6 +188,9 @@ public class Contacto extends Fragment {
             for (Formulario formulario : fromJson) {
                 System.out.println(formulario);
                 Log.e("upsidupsi", formulario.toString());
+                Toast toast= Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
             }
         }
 
