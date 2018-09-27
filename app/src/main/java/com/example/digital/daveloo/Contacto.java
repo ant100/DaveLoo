@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -144,7 +145,7 @@ public class Contacto extends Fragment {
         return encodedImage;
     }
 
-    public String getStringFile(File f) {
+    /*public String getStringFile(File f) {
         InputStream inputStream = null;
         String encodedFile= "", lastVal;
         try {
@@ -169,13 +170,15 @@ public class Contacto extends Fragment {
         }
         lastVal = encodedFile;
         return lastVal;
-    }
+    }*/
 
     public void enviarJson(){
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this.getActivity());
         int usuario_id = sharedPreferences.getInt("usuario_id", -1);
-            String image = getStringFile(fotoFile);
+        Bitmap bitmap = BitmapFactory.decodeFile(fotoFile.getAbsolutePath());
+        String image = getStringImage(bitmap);
+            //String image = getStringFile(fotoFile);
             List<Formulario> list = new ArrayList<Formulario>();
             list.add(new Formulario(usuario_id, tipoSeleccionado, texto, image));
             Gson gson = new Gson();
@@ -187,7 +190,7 @@ public class Contacto extends Fragment {
 
             for (Formulario formulario : fromJson) {
                 System.out.println(formulario);
-                Log.e("upsidupsi", formulario.toString());
+                System.out.println(json);
                 Toast toast= Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
