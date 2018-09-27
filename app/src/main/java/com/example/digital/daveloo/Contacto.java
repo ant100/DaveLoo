@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -179,20 +180,35 @@ public class Contacto extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeFile(fotoFile.getAbsolutePath());
         String image = getStringImage(bitmap);
             //String image = getStringFile(fotoFile);
-            List<Formulario> list = new ArrayList<Formulario>();
+            /*List<Formulario> list = new ArrayList<Formulario>();
             list.add(new Formulario(usuario_id, tipoSeleccionado, texto, image));
             Gson gson = new Gson();
             Type type = new TypeToken<List<Formulario>>() {
             }.getType();
-            String json = gson.toJson(list, type);
-            System.out.println(json);
-            List<Formulario> fromJson = gson.fromJson(json, type);
-
-            for (Formulario formulario : fromJson) {
-                System.out.println(formulario);
-                System.out.println(json);
+            String json = gson.toJson(list, type);*/
+            Gson gson = new Gson();
+            String json = gson.toJson(new Formulario(usuario_id, tipoSeleccionado, texto, image));
+            //System.out.println(json);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+            try {
+                post("http://daveloo.000webhostapp.com/form/get_post", json);
+                Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            //List<Formulario> fromJson = gson.fromJson(json, type);
+            //System.out.println(fromJson);
+            /*for (Formulario formulario : fromJson) {
+                //System.out.println(formulario);
+                //System.out.println(json);
+                Log.i("==========>", "hola");
                 try {
-                    post("https://daveloo.000webhostapp.com/form/get_post", formulario.toString());
+                    post("http://daveloo.000webhostapp.com/form/get_post", formulario.toJsonString());
                     Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
@@ -201,7 +217,7 @@ public class Contacto extends Fragment {
                 {
                     e.printStackTrace();
                 }
-            }
+            }*/
         }
 
     public static final MediaType JSON

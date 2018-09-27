@@ -1,5 +1,8 @@
 package com.example.digital.daveloo;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import java.io.File;
 
 public class Formulario {
@@ -62,6 +65,18 @@ public class Formulario {
 
     @Override
     public String toString() {
-        return "Formulario [id_usuario=" + id_usuario + ", tipo=" + tipo + ", texto=" + texto + ", imagen=" + imagen +"]";
+        return "{\"id_usuario\"=" + this.id_usuario + ", \"tipo\"=\"" + this.tipo + "\", \"texto\"=\"" + this.texto + "\", \"imagen\"=\"" + this.imagen +"\"}";
+    }
+
+    public String toJsonString(){
+        JsonObject consulta = new JsonObject();
+        consulta.addProperty("id_usuario", this.id_usuario);
+        consulta.addProperty("tipo", this.tipo);
+        consulta.addProperty("texto", this.texto);
+        consulta.addProperty("imagen", this.imagen);
+
+        Gson gson = new Gson();
+        String payload = gson.toJson(consulta);
+        return payload;
     }
 }
