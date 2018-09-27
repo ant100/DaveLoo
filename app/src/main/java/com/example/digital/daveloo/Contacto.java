@@ -191,9 +191,16 @@ public class Contacto extends Fragment {
             for (Formulario formulario : fromJson) {
                 System.out.println(formulario);
                 System.out.println(json);
-                Toast toast= Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+                try {
+                    post("https://daveloo.000webhostapp.com/form/get_post", formulario.toString());
+                    Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -204,6 +211,7 @@ public class Contacto extends Fragment {
 
     String post(String url, String json) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
+        System.out.println(body.toString());
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
