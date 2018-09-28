@@ -23,12 +23,29 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String sql2 = "CREATE TABLE IF NOT EXISTS usuario (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, usuario_nombre TEXT NOT NULL, usuario_password TEXT NOT NULL, usuario_email TEXT NOT NULL)";
         db.execSQL(sql2);
+
+        String sql3 = "CREATE TABLE IF NOT EXISTS telefono (id_telefono INTEGER PRIMARY KEY AUTOINCREMENT, servicio TEXT NOT NULL, telefono INTEGER NOT NULL)";
+        db.execSQL(sql3);
+
+        /*String sql4 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('Policía',105)";
+        db.execSQL(sql4);
+        String sql5 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('Bomberos',116)";
+        db.execSQL(sql5);
+        String sql6 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('SAMU',106)";
+        db.execSQL(sql6);
+        String sql7 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('Cruz Roja',115)";
+        db.execSQL(sql7);
+        String sql8 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('Defensa Civil',110)";
+        db.execSQL(sql8);
+        String sql9 = "INSERT INTO telefono (servicio,telefono)\n" + "VALUES ('Emergencias ESSALUD',117)";
+        db.execSQL(sql9);*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS formulario");
         db.execSQL("DROP TABLE IF EXISTS usuario");
+        db.execSQL("DROP TABLE IF EXISTS telefono");
         onCreate(db);
     }
 }

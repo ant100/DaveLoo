@@ -177,6 +177,7 @@ public class Contacto extends Fragment {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this.getActivity());
         int usuario_id = sharedPreferences.getInt("usuario_id", -1);
+        if(fotoFile!=null) {
         Bitmap bitmap = BitmapFactory.decodeFile(fotoFile.getAbsolutePath());
         String image = getStringImage(bitmap);
             //String image = getStringFile(fotoFile);
@@ -191,16 +192,22 @@ public class Contacto extends Fragment {
             //System.out.println(json);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        Log.i("==========>", image);
             try {
                 post("http://daveloo.000webhostapp.com/form/get_post", json);
                 Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), "Se envió correctamente", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        else{
+            Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), "Tiene que tomar una foto", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
             //List<Formulario> fromJson = gson.fromJson(json, type);
             //System.out.println(fromJson);
             /*for (Formulario formulario : fromJson) {
