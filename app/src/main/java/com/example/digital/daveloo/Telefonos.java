@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,61 @@ public class Telefonos extends Fragment {
 
         ArrayList<String[]> lista_telf = new ArrayList<String[]>();
 
-        String[] evento1 = {"Policía", "105", "1" };
+        TelefonoDAO dao = new TelefonoDAO(getActivity().getBaseContext());
+        try{
+            ArrayList<Telefono> telefonos = dao.obtener();
+            for (Telefono tel : telefonos){
+                //int i = 0;
+                String[] evento = new String[3];
+                evento[0] = tel.getServicio();
+                evento[1] = Integer.toString(tel.getNumero());
+                evento[2] = Integer.toString(tel.getTelefono_id());
+                lista_telf.add(evento);
+            }
+            ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
+
+            for (String[] evento : lista_telf) {
+                HashMap<String, String> datosEvento = new HashMap<String, String>();
+
+                datosEvento.put("name", evento[0]);
+                datosEvento.put("desc", evento[1]);
+                datosEvento.put("id", evento[2]);
+
+                eventos.add(datosEvento);
+            }
+
+            SimpleAdapter listadoAdapter = new SimpleAdapter(getContext(), eventos, R.layout.fragment_telefono_fila, from, to);
+
+            ListView lv = (ListView)rootView.findViewById(R.id.lista2);
+            lv.setAdapter(listadoAdapter);
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    TextView tv = (TextView) view.findViewById(R.id.contacto);
+                    String text = tv.getText().toString();
+                    TextView ptv = (TextView)view.findViewById(R.id.numero);
+                    final String phoneNumber = ptv.getText().toString();
+
+                    String txtConfirmacion = String.format("¿Seguro que deseas llamar a %s?", text);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage(txtConfirmacion)
+                            .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // do the call
+                                    callPhoneNumber(phoneNumber);
+                                }
+                            }).setNegativeButton("Cancelar", null);
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            });
+        } catch (DAOException e){
+            Log.i("TelefonoObtener", "=====>" + e.getMessage());
+        }
+        /*String[] evento1 = {"Policía", "105", "1" };
         String[] evento2 = {"Bomberos", "116", "2" };
         String[] evento3 = {"SAMU", "106", "3" };
         String[] evento4 = {"Cruz Roja", "115", "3" };
@@ -45,9 +100,9 @@ public class Telefonos extends Fragment {
         lista_telf.add(evento3);
         lista_telf.add(evento4);
         lista_telf.add(evento5);
-        lista_telf.add(evento6);
+        lista_telf.add(evento6);*/
 
-        ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
+        /*ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
 
         for (String[] evento : lista_telf) {
             HashMap<String, String> datosEvento = new HashMap<String, String>();
@@ -86,7 +141,7 @@ public class Telefonos extends Fragment {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
-        });
+        });*/
 
 
         return rootView;
