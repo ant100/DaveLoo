@@ -106,7 +106,7 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
                         .position(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")))
                         .title(jobinterview.getString("mapa_nombre")));
                 if (i == 0) {
-                    gmap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")), 15));
+                    gmap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(jobinterview.getDouble("mapa_latitud"), jobinterview.getDouble("mapa_longitud")), 13));
                 }
             }
         } catch (JSONException e) {
@@ -123,7 +123,7 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
         googleMap.setTrafficEnabled(true);
         gmap = googleMap;
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 13));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 15));
 
     }
 
