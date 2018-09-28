@@ -123,7 +123,7 @@ public class Lugares extends AppCompatActivity implements OnMapReadyCallback {
         googleMap.setTrafficEnabled(true);
         gmap = googleMap;
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 15));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.04592, -77.030565), 13));
 
     }
 
