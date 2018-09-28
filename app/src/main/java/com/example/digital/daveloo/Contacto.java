@@ -78,8 +78,7 @@ public class Contacto extends Fragment {
         // onclick event for the camera button
         imageView = rootView.findViewById(R.id.imageView2);
         rotar(90);
-        Spinner tipoSpinner = rootView.findViewById(R.id.spinner);
-        tipoSeleccionado = tipoSpinner.getSelectedItem().toString();
+        final Spinner tipoSpinner = rootView.findViewById(R.id.spinner);
         final EditText textoView = rootView.findViewById(R.id.texto);
         Button btnCamara = rootView.findViewById(R.id.camara);
         Button btnEnviar = rootView.findViewById(R.id.btnEnviar);
@@ -93,6 +92,7 @@ public class Contacto extends Fragment {
             @Override
             public void onClick(View view) {
                 texto = textoView.getText().toString();
+                tipoSeleccionado = tipoSpinner.getSelectedItem().toString();
                 enviarJson();
             }
         });
